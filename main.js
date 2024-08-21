@@ -1,6 +1,5 @@
 // Declaración del Arreglo de contendrá los objetos pokemon:
 const ArrayPokemons = [];
-
 // Clase POKEMON:
 class POKEMON {
   constructor(id, nombre, foto, tipo, nivel, ps) {
@@ -38,10 +37,10 @@ let squirtle = new POKEMON(
   "5",
   "45ps"
 );
-
+// carga de datos al arreglo:
 ArrayPokemons.push(charmander, bulbasur, squirtle);
 
-let card;
+let card; // contenedor para guardar cada elemento html
 let pokeContainer = document.getElementById("pokeContainer");
 
 ArrayPokemons.forEach((e) => {
@@ -61,34 +60,29 @@ ArrayPokemons.forEach((e) => {
 
 </div>
     `;
-
     pokeContainer.innerHTML += card; 
-
 });
 
-let presionables;
+let presionables; // arreglo adicional para recibir las tarjetas creadas:
 presionables = document.querySelectorAll(".item");
 
-
-/*presionables.forEach((i) => {
+/* presionables.forEach((i) => {
     i.addEventListener("mousedown", () => {
-        
+        // podemos hacer uso de este evento también
     });
-});
-*/
+}); */
   
   presionables.forEach((elementoPresionable, indiceArray) => {
+    // indiceArray es para poder acceder a cada uno de los elementos del ArrayPokemons, si lo intentamos acceder con el iterador original "e" no sería posible
     elementoPresionable.addEventListener("click", (evento) =>{
       evento.stopPropagation();
       /*Al agregar evento.stopPropagation() en el evento de clic, se detiene la propagación del evento hacia arriba en la jerarquía del DOM, lo que debería evitar que el evento se ejecute varias veces.*/
 
       const seleccionMostrada = ArrayPokemons[indiceArray].nombre;
+      // tomamos el dato nombre del arreglo ArrayPokemons, de la posición que corresponda con el elemento pulsado del arreglo presionables
 
       alert("El Pokemon seleccionado fué: "+seleccionMostrada);
-
       console.log("El pokemon seleccionado es: "+seleccionMostrada);
-      
-      
       
     });
   });
